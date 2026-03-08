@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Navbar Responsive</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      direction: ltr;
+    }
+
+    .navbar {
+      background: #db8b2a;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+    }
+
+    .menu-icon {
+      font-size: 26px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #00c3ff;
+    }
+
+    /* ===== Dropdown (PC) ===== */
+    .submenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #333;
+      list-style: none;
+      min-width: 160px;
+      border-radius: 6px;
+      overflow: hidden;
+
+      opacity: 0;
+      transform: translateY(10px);
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .submenu li a {
+      display: block;
+      padding: 10px;
+    }
+
+    @media (hover: hover) {
+      .dropdown:hover .submenu {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+      }
+    }
+
+    /* زر X */
+    .close {
+      display: none;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* ===== 📱 Mobile ===== */
+    @media (max-width: 768px) {
+
+      .menu-icon {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 70%;
+        height: 100%;
+        background: #db8b2a;
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        transition: 0.3s;
+        z-index: 1000;
+      }
+
+      .nav-links.show {
+        left: 0;
+      }
+
+      .close {
+        display: block;
+      }
+
+      .submenu {
+        position: static;
+        background: #2a2a2a;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        opacity: 1;
+        transform: none;
+        visibility: visible;
+      }
+
+      .dropdown.active .submenu {
+        max-height: 300px;
+      }
+
+      .nav-links a:hover {
+        color: white;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+  <div class="menu-icon" id="openMenu">☰</div>
+
+  <ul class="nav-links" id="navLinks">
+    <li class="close" id="closeMenu">✕</li>
+
+    <li><a href="index1.html">Home</a></li>
+
+    <li class="dropdown">
+      <a href="#">Table de basse ▾</a>
+      <ul class="submenu">
+        <li><a href="index3.html">Argent</a></li>
+        <li><a href="#">Dorée</a></li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a href="#">Table Salle à manger ▾</a>
+      <ul class="submenu">
+        <li><a href="#">Argent</a></li>
+        <li><a href="#">Dorée</a></li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a href="#">Table de Console ▾</a>
+      <ul class="submenu">
+        <li><a href="#">Argent</a></li>
+        <li><a href="#">Dorée</a></li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a href="#">Table de coin ▾</a>
+      <ul class="submenu">
+        <li><a href="#">Argent</a></li>
+        <li><a href="#">Dorée</a></li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a href="#">les mirroires ▾</a>
+      <ul class="submenu">
+        <li><a href="#">Argent</a></li>
+        <li><a href="#">Dorée</a></li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a href="#">les chiases ▾</a>
+      <ul class="submenu">
+        <li><a href="#">Argent</a></li>
+        <li><a href="#">Dorée</a></li>
+      </ul>
+    </li>
+
+  </ul>
+</nav>
+
+<script>
+  const openMenu = document.getElementById("openMenu");
+  const closeMenu = document.getElementById("closeMenu");
+  const navLinks = document.getElementById("navLinks");
+  const dropdowns = document.querySelectorAll(".dropdown");
+
+  openMenu.onclick = () => {
+    navLinks.classList.add("show");
+  };
+
+  closeMenu.onclick = () => {
+    navLinks.classList.remove("show");
+  };
+
+  dropdowns.forEach(drop => {
+    drop.addEventListener("click", function(e) {
+      if (window.innerWidth <= 768) {
+        this.classList.toggle("active");
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gi mouble deco ⭐</title>
+
+<style>
+
+html,body{
+margin:0;
+padding:0;
+height:100%;
+overflow:hidden;
+font-family:Arial;
+background:linear-gradient(135deg,orange,purple);
+}
+
+
+/* BOX TEXT */
+
+.D1{
+position:absolute;
+top:50%;
+left:5%;
+transform:translateY(-50%);
+height:60%;
+width:20%;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+
+
+#textBox{
+
+color:white;
+font-size:19px;
+line-height:1.6;
+
+background:rgba(0,0,0,0.3);
+
+padding:20px;
+
+border-radius:15px;
+
+text-align:center;
+
+opacity:1;
+
+transition:0.4s;
+
+}
+
+
+/* IMAGE */
+
+.D2{
+position:absolute;
+top:50%;
+right:5%;
+transform:translateY(-50%);
+height:60%;
+width:25%;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+background-size:cover;
+background-position:center;
+
+opacity:1;
+transition:0.4s;
+}
+
+
+/* NAV */
+
+.D3{
+
+position:absolute;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+height:80px;
+width:50%;
+
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+
+border-top-left-radius:50px;
+border-top-right-radius:50px;
+
+box-shadow:0 -5px 20px rgba(0,0,0,0.5);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+transition:.5s;
+
+}
+
+
+.D3.hide{
+
+transform:translate(-50%,100%);
+opacity:0;
+
+}
+
+
+
+.i0{
+
+display:flex;
+gap:15px;
+overflow-x:auto;
+padding:20px;
+scroll-behavior:smooth;
+width:85%;
+
+}
+
+.i0::-webkit-scrollbar{
+display:none;
+}
+
+
+.i0 img{
+
+width:60px;
+height:60px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+cursor:pointer;
+
+transition:.3s;
+
+background:white;
+
+}
+
+
+/* Hover */
+
+.i0 img:hover{
+
+transform:translateY(-10px);
+
+}
+
+
+/* ACTIVE IMAGE */
+
+.i0 img.active{
+
+transform:scale(1.2);
+
+box-shadow:0 0 15px gold;
+
+}
+
+
+
+.B1,.B2{
+
+background:transparent;
+border:none;
+color:white;
+font-size:20px;
+cursor:pointer;
+
+}
+
+
+.B3{
+
+position:absolute;
+bottom:120px;
+left:50%;
+transform:translateX(-50%);
+
+height:40px;
+width:40px;
+
+border:none;
+
+border-radius:50%;
+
+background:white;
+
+cursor:pointer;
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+
+<div class="D1">
+
+<p id="textBox">
+
+اضغط على صورة لرؤية الوصف
+
+</p>
+
+</div>
+
+
+<div class="D2" id="mainImage"></div>
+
+
+
+<div class="D3" id="d3">
+
+
+<button class="B1" onclick="scroll1()">◀</button>
+
+
+<div class="i0" id="i0">
+
+
+<img src="P1.jpg"
+
+data-text="Table de basse grand color blanc"
+
+onclick="changeImage(this)">
+
+
+<img src="P2.jpg"
+
+data-text="Table de basse ronde dorée"
+
+onclick="changeImage(this)">
+
+
+<img src="P3.jpg"
+
+data-text="Table salon carée argent avec 4 table de coin ronde"
+
+onclick="changeImage(this)">
+
+
+<img src="P4.jpg"
+
+data-text="deux table de basse ronde"
+
+onclick="changeImage(this)">
+
+
+</div>
+
+
+<button class="B2" onclick="scroll2()">▶</button>
+
+</div>
+
+
+<button onclick="toggleBox()" class="B3">▲</button>
+
+
+
+
+<script>
+
+
+function changeImage(element){
+
+
+// active effect
+
+document.querySelectorAll(".i0 img")
+.forEach(img=>img.classList.remove("active"));
+
+element.classList.add("active");
+
+
+
+// fade image
+
+let box=document.getElementById("mainImage");
+
+box.style.opacity=0;
+
+
+setTimeout(()=>{
+
+box.style.backgroundImage=
+"url('"+element.src+"')";
+
+box.style.opacity=1;
+
+},200);
+
+
+
+// fade text
+
+let text=document.getElementById("textBox");
+
+text.style.opacity=0;
+
+
+setTimeout(()=>{
+
+text.innerText=
+element.dataset.text;
+
+text.style.opacity=1;
+
+},200);
+
+
+}
+
+
+
+function toggleBox(){
+
+document.getElementById("d3")
+.classList.toggle("hide");
+
+}
+
+
+
+function scroll1(){
+
+document.getElementById("i0")
+.scrollBy({
+
+left:-200,
+
+behavior:"smooth"
+
+});
+
+}
+
+
+
+function scroll2(){
+
+document.getElementById("i0")
+.scrollBy({
+
+left:200,
+
+behavior:"smooth"
+
+});
+
+}
+
+
+</script>
+
+
+</body>
+</html>
